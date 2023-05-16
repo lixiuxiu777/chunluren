@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>纯路人</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      @media screen and (max-width: 600px) {
+        #kun {
+          transform: scale(0.5);
+        }
+      }
+      :root {
+        --armLength: 110px;
+      }
+
+      .app {
+        width: 100vw;
+        height: 100vh;
+        background-image: url("https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/00b660e0954f40b5b4db00090ab1e14c~tplv-k3u1fbpfcp-watermark.image?");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        padding-top: 120px;
+      }
+      .app #kun {
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+      }
+      .app #kun .head {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 195px;
+        animation: headmove 1s ease infinite;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: #d1b4a8;
+      }
+      .app #kun .head::after {
+        content: "";
+        width: 20px;
+        height: 80px;
+        background-color: #d1b4a8;
+        position: absolute;
+        bottom: -70px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .app #kun .hair {
+        width: 150px;
+        height: 100px;
+        display: flex;
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      .app #kun .hair-l {
+        width: 50%;
+        height: 100%;
+        background-image: linear-gradient(to right, lightgrey, grey);
+        border-radius: 65px 21px 76px 14px/90px 17px 111px 26px;
+      }
+      .app #kun .hair-r {
+        width: 50%;
+        height: 100%;
+        background-image: linear-gradient(to left, lightgrey, grey);
+        border-radius: 33px 85px 29px 99px/26px 99px 62px 147px;
+      }
+      .app #kun .kbody {
+        position: relative;
+        z-index: 2;
+        -webkit-clip-path: polygon(17% 16%, 63% 29%, 75% 100%, 0% 100%);
+        clip-path: polygon(17% 16%, 63% 29%, 75% 100%, 0% 100%);
+        width: 150px;
+        height: 230px;
+        background-color: #333;
+        animation: bodymove 1s ease infinite;
+        transform-origin: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .app #kun .kbody span {
+        color: #fff;
+        font-size: 350px;
+        transform: rotate(10deg);
+      }
+      .app #kun .arms {
+        width: 72%;
+        height: 100%;
+        position: absolute;
+        top: 66px;
+        left: 12%;
+        animation: armmove 1s ease infinite;
+      }
+      .app #kun .arm {
+        background-color: #333;
+        position: absolute;
+        top: 10px;
+        z-index: 1;
+        transform-origin: center top;
+        width: 30px;
+        height: var(--armLength);
+      }
+      .app #kun .arm-l {
+        left: 0;
+        transform: rotate(50deg);
+        border-radius: 0 0 30px 30px;
+      }
+      .app #kun .arm-l::after {
+        content: "";
+        position: absolute;
+        width: 26px;
+        height: 80px;
+        border-radius: 0 0 30px 30px;
+        background-color: #333;
+        left: 0;
+        bottom: -70px;
+        transform-origin: center top;
+        transform: rotate(-100deg);
+      }
+      .app #kun .arm-r {
+        right: 0px;
+        transform: rotate(-20deg);
+        border-radius: 0 0 30px 30px;
+      }
+      .app #kun .arm-r::after {
+        content: "";
+        position: absolute;
+        width: 26px;
+        height: 80px;
+        border-radius: 0 0 30px 30px;
+        background-color: #333;
+        left: 0;
+        bottom: -70px;
+        transform-origin: center top;
+        transform: rotate(100deg);
+      }
+      .app #kun .leg {
+        width: 40px;
+        height: 128px;
+        background-color: #877785;
+        position: absolute;
+        bottom: -110px;
+        z-index: 1;
+        transform-origin: center top;
+      }
+      .app #kun .leg-l {
+        left: 12px;
+        transform: rotate(20deg);
+      }
+      .app #kun .leg-l::after {
+        content: "";
+        position: absolute;
+        width: 38px;
+        height: 120px;
+        background-color: #877785;
+        border-radius: 0 0 30px 30px;
+        left: 0;
+        bottom: -110px;
+        transform-origin: center top;
+        transform: rotate(-10deg);
+      }
+      .app #kun .leg-r {
+        right: 50px;
+        transform: rotate(-30deg);
+      }
+      .app #kun .leg-r::after {
+        content: "";
+        position: absolute;
+        width: 38px;
+        height: 132px;
+        background-color: #877785;
+        border-radius: 0 0 30px 30px;
+        left: 0;
+        bottom: -126px;
+        transform-origin: center top;
+        transform: rotate(10deg);
+      }
+
+      @keyframes headmove {
+        25% {
+          bottom: 210px;
+        }
+        50% {
+          bottom: 195px;
+        }
+        75% {
+          bottom: 170px;
+        }
+      }
+      @keyframes armmove {
+        25% {
+          width: 92%;
+          top: 60px;
+          left: 11%;
+        }
+        50% {
+          width: 72%;
+          top: 66px;
+          left: 12%;
+        }
+        75% {
+          width: 81%;
+          top: 80px;
+          left: 14%;
+        }
+      }
+      @keyframes bodymove {
+        25% {
+          -webkit-clip-path: polygon(23% 13%, 98% 10%, 75% 100%, 0% 100%);
+          clip-path: polygon(23% 13%, 98% 10%, 75% 100%, 0% 100%);
+        }
+        50% {
+          -webkit-clip-path: polygon(17% 16%, 63% 29%, 75% 100%, 0% 100%);
+          clip-path: polygon(17% 16%, 63% 29%, 75% 100%, 0% 100%);
+        }
+        75% {
+          -webkit-clip-path: polygon(24% 27%, 90% 38%, 75% 100%, 0% 100%);
+          clip-path: polygon(24% 27%, 90% 38%, 75% 100%, 0% 100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div id="kun">
+        <div class="head">
+          <div class="hair">
+            <div class="hair-l"></div>
+            <div class="hair-r"></div>
+          </div>
+        </div>
+
+        <div class="kbody">
+          <span>Y</span>
+        </div>
+
+        <div class="arms">
+          <div class="arm arm-l"></div>
+          <div class="arm arm-r"></div>
+        </div>
+
+        <div class="leg leg-l"></div>
+        <div class="leg leg-r"></div>
+      </div>
+
+      <div class="triangle"></div>
+    </div>
+    <script>
+      const count = ref(0);
+      function addCount() {
+        count.value += 1;
+      }
+    </script>
+  </body>
+</html>
